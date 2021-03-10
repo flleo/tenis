@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Tenis.Models.Superficie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Superficies</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva superficie", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Superficie1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Superficie1)
+        </td>
+        <td>
+            @Html.ActionLink("Torneos", "torneos", new { id = item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>

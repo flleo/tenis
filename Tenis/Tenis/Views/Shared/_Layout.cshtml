@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Torneos de Tenis</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div id="navbar" class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Torneos de Tenis", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right " style="display:flex;flex-direction:row;justify-content:center;">
+
+                    @if (Session["USER"] != null)
+                    {
+                        <li class="navbar-text"> Bienvenido @Session["USER"]  </li>
+                        <li><a href="@Url.Action("Logout", "Login")"><span class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+                   
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("", "Login")"><span class="glyphicon glyphicon-user"> Login</span></a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Fede Lleó ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

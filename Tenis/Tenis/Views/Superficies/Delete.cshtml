@@ -1,0 +1,32 @@
+﻿@model Tenis.Models.Superficie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>¿Seguro que quieres borrar la superficie?</h3>
+<div>
+    <h4>Superficie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Superficie1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Superficie1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresa al listado", "Index")
+        </div>
+    }
+</div>

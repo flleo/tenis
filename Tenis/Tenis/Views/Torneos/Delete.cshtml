@@ -1,0 +1,64 @@
+﻿@model Tenis.Models.Torneo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar torneo</h2>
+
+<h3>¿Seguro que quiere borrar el torneo?</h3>
+<div>
+    <h4>Torneo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Torneo1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Torneo1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estadio.Estadio1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estadio.Estadio1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pais.Pais1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pais.Pais1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Superficie.Superficie1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Superficie.Superficie1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoTorneo.TipoTorneo1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoTorneo.TipoTorneo1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar al listado", "Index")
+        </div>
+    }
+</div>

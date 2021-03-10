@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS2001: No se encontró el archivo de origen 'R:\Informatica\workspaces\visual-studio-net\Tenis\Tenis\Controllers\TorneosController - Copia.cs'.
+dotnet_diagnostic.CS2001.severity = none

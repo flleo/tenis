@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Tenis.Models.Torneo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Torneos</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo torneo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Torneo1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estadio.Estadio1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pais.Pais1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Superficie.Superficie1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTorneo.TipoTorneo1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Torneo1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estadio.Estadio1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pais.Pais1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Superficie.Superficie1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoTorneo.TipoTorneo1)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdTorneo }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.IdTorneo }) 
+        </td>
+    </tr>
+}
+
+</table>

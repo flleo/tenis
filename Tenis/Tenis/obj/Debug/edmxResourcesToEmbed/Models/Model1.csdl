@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tenisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EdicionTorneo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTorneo" Type="Int32" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Njugadores" Type="Int32" />
+    <Property Name="premios" Type="Double" />
+    <Property Name="Ganador" Type="Int32" />
+    <NavigationProperty Name="Jugador" Relationship="Self.FK_edicion_ganador" FromRole="EdicionTorneo" ToRole="Jugador" />
+    <NavigationProperty Name="Torneo" Relationship="Self.FK_edicion_torneo" FromRole="EdicionTorneo" ToRole="Torneo" />
+  </EntityType>
+  <EntityType Name="Estadio">
+    <Key>
+      <PropertyRef Name="IdEstadio" />
+    </Key>
+    <Property Name="IdEstadio" Type="Int32" Nullable="false" />
+    <Property Name="Estadio1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Torneo" Relationship="Self.FK_torneo_estadio" FromRole="Estadio" ToRole="Torneo" />
+  </EntityType>
+  <EntityType Name="Jugador">
+    <Key>
+      <PropertyRef Name="IdJugador" />
+    </Key>
+    <Property Name="IdJugador" Type="Int32" Nullable="false" />
+    <Property Name="Jugador1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EdicionTorneo" Relationship="Self.FK_edicion_ganador" FromRole="Jugador" ToRole="EdicionTorneo" />
+  </EntityType>
+  <EntityType Name="Pais">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Pais1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Torneo" Relationship="Self.FK_torneo_pais" FromRole="Pais" ToRole="Torneo" />
+  </EntityType>
+  <EntityType Name="Superficie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Superficie1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Torneo" Relationship="Self.FK_torneo_superficie" FromRole="Superficie" ToRole="Torneo" />
+  </EntityType>
+  <EntityType Name="TipoTorneo">
+    <Key>
+      <PropertyRef Name="IdTipo" />
+    </Key>
+    <Property Name="IdTipo" Type="Int32" Nullable="false" />
+    <Property Name="TipoTorneo1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Torneo" Relationship="Self.FK_torneo_tipo" FromRole="TipoTorneo" ToRole="Torneo" />
+  </EntityType>
+  <EntityType Name="TipoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__User__idTipoUsua__398D8EEE" FromRole="TipoUsuario" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Torneo">
+    <Key>
+      <PropertyRef Name="IdTorneo" />
+    </Key>
+    <Property Name="IdTorneo" Type="Int32" Nullable="false" />
+    <Property Name="Torneo1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IdPais" Type="Int32" />
+    <Property Name="IdTipo" Type="Int32" />
+    <Property Name="IdSuperficie" Type="Int32" />
+    <Property Name="IdEstadio" Type="Int32" />
+    <NavigationProperty Name="EdicionTorneo" Relationship="Self.FK_edicion_torneo" FromRole="Torneo" ToRole="EdicionTorneo" />
+    <NavigationProperty Name="Estadio" Relationship="Self.FK_torneo_estadio" FromRole="Torneo" ToRole="Estadio" />
+    <NavigationProperty Name="Pais" Relationship="Self.FK_torneo_pais" FromRole="Torneo" ToRole="Pais" />
+    <NavigationProperty Name="Superficie" Relationship="Self.FK_torneo_superficie" FromRole="Torneo" ToRole="Superficie" />
+    <NavigationProperty Name="TipoTorneo" Relationship="Self.FK_torneo_tipo" FromRole="Torneo" ToRole="TipoTorneo" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="idTipoUsuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TipoUsuario" Relationship="Self.FK__User__idTipoUsua__398D8EEE" FromRole="User" ToRole="TipoUsuario" />
+  </EntityType>
+  <Association Name="FK_edicion_ganador">
+    <End Role="Jugador" Type="Self.Jugador" Multiplicity="0..1" />
+    <End Role="EdicionTorneo" Type="Self.EdicionTorneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jugador">
+        <PropertyRef Name="IdJugador" />
+      </Principal>
+      <Dependent Role="EdicionTorneo">
+        <PropertyRef Name="Ganador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_edicion_torneo">
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="0..1" />
+    <End Role="EdicionTorneo" Type="Self.EdicionTorneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="IdTorneo" />
+      </Principal>
+      <Dependent Role="EdicionTorneo">
+        <PropertyRef Name="IdTorneo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_torneo_estadio">
+    <End Role="Estadio" Type="Self.Estadio" Multiplicity="0..1" />
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estadio">
+        <PropertyRef Name="IdEstadio" />
+      </Principal>
+      <Dependent Role="Torneo">
+        <PropertyRef Name="IdEstadio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_torneo_pais">
+    <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pais">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Torneo">
+        <PropertyRef Name="IdPais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_torneo_superficie">
+    <End Role="Superficie" Type="Self.Superficie" Multiplicity="0..1" />
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Superficie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Torneo">
+        <PropertyRef Name="IdSuperficie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_torneo_tipo">
+    <End Role="TipoTorneo" Type="Self.TipoTorneo" Multiplicity="0..1" />
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoTorneo">
+        <PropertyRef Name="IdTipo" />
+      </Principal>
+      <Dependent Role="Torneo">
+        <PropertyRef Name="IdTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__idTipoUsua__398D8EEE">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="idTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tenisEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EdicionTorneo" EntityType="Self.EdicionTorneo" />
+    <EntitySet Name="Estadio" EntityType="Self.Estadio" />
+    <EntitySet Name="Jugador" EntityType="Self.Jugador" />
+    <EntitySet Name="Pais" EntityType="Self.Pais" />
+    <EntitySet Name="Superficie" EntityType="Self.Superficie" />
+    <EntitySet Name="TipoTorneo" EntityType="Self.TipoTorneo" />
+    <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
+    <EntitySet Name="Torneo" EntityType="Self.Torneo" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_edicion_ganador" Association="Self.FK_edicion_ganador">
+      <End Role="Jugador" EntitySet="Jugador" />
+      <End Role="EdicionTorneo" EntitySet="EdicionTorneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_edicion_torneo" Association="Self.FK_edicion_torneo">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="EdicionTorneo" EntitySet="EdicionTorneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_torneo_estadio" Association="Self.FK_torneo_estadio">
+      <End Role="Estadio" EntitySet="Estadio" />
+      <End Role="Torneo" EntitySet="Torneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_torneo_pais" Association="Self.FK_torneo_pais">
+      <End Role="Pais" EntitySet="Pais" />
+      <End Role="Torneo" EntitySet="Torneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_torneo_superficie" Association="Self.FK_torneo_superficie">
+      <End Role="Superficie" EntitySet="Superficie" />
+      <End Role="Torneo" EntitySet="Torneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_torneo_tipo" Association="Self.FK_torneo_tipo">
+      <End Role="TipoTorneo" EntitySet="TipoTorneo" />
+      <End Role="Torneo" EntitySet="Torneo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__idTipoUsua__398D8EEE" Association="Self.FK__User__idTipoUsua__398D8EEE">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenis", "Tenis\Tenis.csproj", "{0E86E926-81FE-43C3-B646-57AFE06F66C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F0EE44B3-AAA6-475C-A498-AF09F12218EF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E86E926-81FE-43C3-B646-57AFE06F66C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E86E926-81FE-43C3-B646-57AFE06F66C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E86E926-81FE-43C3-B646-57AFE06F66C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E86E926-81FE-43C3-B646-57AFE06F66C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EF1FD4C-3C85-4983-AC96-1FA7AB302F3C}
+	EndGlobalSection
+EndGlobal
